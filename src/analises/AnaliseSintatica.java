@@ -91,6 +91,34 @@ public class AnaliseSintatica {
      return;
     }
     
+    
+    public void FOR() {
+        token = mt.geraToken();
+        if (token.getStr().toString().equals("for")){
+            ATRIB();
+           
+            
+        }
+     return;
+    }
+    
+    public void ATRIB (){
+        token = mt.geraToken();
+        if (token.getStr().toString().equals("id")){
+            EXPATRIB();
+           
+            
+        }
+        return;
+    }
+    
+    public void EXPATRIB(){
+        
+    }
+    
+    
+    
+    
     public void ERRO(String esperado, String obtido) {
         JOptionPane.showMessageDialog(null, "Ocorreu um erro na análise! Era esperado " + esperado + " e foi obtido " + obtido);
         return;
