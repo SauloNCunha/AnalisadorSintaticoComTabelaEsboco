@@ -1,14 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package analises;
 
-/**
- *
- * @author valter
- */
 public class AnaliseLexica {
     private String s;
     private Token token;
@@ -130,7 +121,51 @@ public class AnaliseLexica {
             token.setTipo(TiposToken.PONTUACAO);
             
             return token;
+        }else if (c == '*') { //verifica *
+            token.add(c);
+            c = cabecote();
+            i++;
+            token.setTipo(TiposToken.PONTUACAO);
+            
+            return token;
+        }else if (c == '/') { //verifica /
+            token.add(c);
+            c = cabecote();
+            i++;
+            token.setTipo(TiposToken.PONTUACAO);
+            
+            return token;
         }
+        else if (c == '+') { //verifica +
+            token.add(c);
+            c = cabecote();
+            i++;
+            token.setTipo(TiposToken.PONTUACAO);
+            
+            return token;
+        } else if (c == '-') { //verifica -
+            token.add(c);
+            c = cabecote();
+            i++;
+            token.setTipo(TiposToken.PONTUACAO);
+            
+            return token;
+        } else if (c == '(') { //verifica (
+            token.add(c);
+            c = cabecote();
+            i++;
+            token.setTipo(TiposToken.PONTUACAO);
+            
+            return token;
+        }else if (c == ')') { //verifica )
+            token.add(c);
+            c = cabecote();
+            i++;
+            token.setTipo(TiposToken.PONTUACAO);
+            
+            return token;
+        }
+        
         else {
             token.add(c);
             System.out.println("C: " + c);
