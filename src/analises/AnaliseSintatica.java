@@ -133,6 +133,106 @@ public class AnaliseSintatica {
         }
     }
     
+    
+    public void FOR() {
+        token = mt.geraToken();
+        if (token.getStr().toString().equals("for")){
+            ATRIB();
+           
+            
+        }
+     return;
+    }
+    
+    public void ATRIB (){
+        token = mt.geraToken();
+        if (token.getStr().toString().equals("id")){
+            EXPATRIB();
+           
+            
+        }
+        return;
+    }
+    
+    public void EXPATRIB(){
+        token = mt.geraToken();
+        MUL();        
+    }    
+    
+    public void MUL(){
+       token = mt.geraToken();
+       DIV();
+       MUL2();
+    }
+    
+    public void DIV(){
+        token = mt.geraToken();
+        SOM();
+        DIV2();
+    }
+    
+    public void MUL2(){
+        token = mt.geraToken();
+        if(token.getStr().toString().equals("*")){
+           MUL(); 
+        } 
+        else
+            return;
+    }
+    
+    public void SOM(){
+        token = mt.geraToken();
+        SUB();
+        SOM2();
+    }
+    
+    public void DIV2(){
+        token = mt.geraToken();
+        if(token.getStr().toString().equals("/")){
+           DIV(); 
+        } 
+        else
+            return;
+    }
+    
+    public void SUB(){
+        token = mt.geraToken();
+        OPERANDO_ATRIB();
+        SUB2();
+    }
+    
+    public void SOM2(){
+       token = mt.geraToken();
+       if(token.getStr().toString().equals("+")){
+          SOM(); 
+       } 
+        else
+            return; 
+    }
+    
+    public void SUB2(){
+       token = mt.geraToken(); 
+       if(token.getStr().toString().equals("-")){
+          SUB(); 
+       } 
+        else
+            return; 
+    }
+    
+    public void OPERANDO_ATRIB(){
+       token = mt.geraToken();
+       if(token.getTipo() == TiposToken.ID){
+          return;
+       }else if(token.getTipo() == TiposToken.CTE){
+          return;
+       }else if(token.getStr().toString().equals("(")){
+           MUL();
+           if (token.getStr().toString().equals(")")){
+               return;
+           }
+       }       
+    }
+    
     public void ERRO(String esperado, String obtido) {
         JOptionPane.showMessageDialog(null, "Ocorreu um erro na análise! Era esperado " + esperado + " e foi obtido " + obtido);
         return;
