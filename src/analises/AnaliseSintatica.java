@@ -114,10 +114,7 @@ public class AnaliseSintatica {
     
     public void EXPATRIB(){
         
-    }
-    
-    
-    
+    }    
     
     public void ERRO(String esperado, String obtido) {
         JOptionPane.showMessageDialog(null, "Ocorreu um erro na análise! Era esperado " + esperado + " e foi obtido " + obtido);
