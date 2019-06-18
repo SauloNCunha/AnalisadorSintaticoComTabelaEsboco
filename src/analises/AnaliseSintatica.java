@@ -790,4 +790,6 @@ public class AnaliseSintatica {
         JOptionPane.showMessageDialog(null, "Ocorreu um erro na análise! Era esperado " + esperado + " e foi obtido " + obtido);
         return;
     }
+    
+   
 }
