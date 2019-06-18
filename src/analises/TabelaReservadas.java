@@ -31,7 +31,6 @@ public class TabelaReservadas {
         tabela.put(13, "until");
         tabela.put(14, "const");
         tabela.put(15, "var");
-        tabela.put(16, "define");
         tabela.put(17, "use");
         tabela.put(18, "key");
         tabela.put(19, "readkey");   
