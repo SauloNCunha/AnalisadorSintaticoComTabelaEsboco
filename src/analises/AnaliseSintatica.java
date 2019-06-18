@@ -101,7 +101,7 @@ public class AnaliseSintatica {
         if(token.getTipo()== TiposToken.ID){
             token = mt.geraToken();
             if (token.getStr().toString().equals("=")){
-                //EXP_ATRIB();
+                EXP_ATRIB();
                 if (token.getStr().toString().equals(";")){
                     DEC_CONST2();
                 }
@@ -128,9 +128,22 @@ public class AnaliseSintatica {
         if(token.getTipo()== TiposToken.ID){
             LISTA_ID();
             if(token.getStr().toString().equals(":")){
-                
+                DEC_VAR2();
             }
+            else ERRO(":", token.getStr().toString());
         }
+        else
+            if(token.getStr().toString().equals("^")){
+                //LISTA_PONT();
+                if(token.getStr().toString().equals(":")){
+                    DEC_VAR2();
+                }
+                else ERRO(":", token.getStr().toString());
+            }
+    }
+    
+    public void DEC_VAR2(){
+        
     }
     
     
@@ -147,14 +160,14 @@ public class AnaliseSintatica {
     public void ATRIB (){
         token = mt.geraToken();
         if (token.getStr().toString().equals("id")){
-            EXPATRIB();
+            EXP_ATRIB();
            
             
         }
         return;
     }
     
-    public void EXPATRIB(){
+    public void EXP_ATRIB(){
         token = mt.geraToken();
         MUL();        
     }    
