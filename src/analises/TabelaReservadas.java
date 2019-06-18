@@ -18,12 +18,6 @@ public class TabelaReservadas {
     public TabelaReservadas() {
         tabela.put(1, "program");
         tabela.put(2, "uses");
-        
-        
-        
-        
-        
-        
         tabela.put(3, "begin");
         tabela.put(4, "end");
         tabela.put(5, "if");

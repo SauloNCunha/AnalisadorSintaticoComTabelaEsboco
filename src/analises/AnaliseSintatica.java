@@ -105,14 +105,14 @@ public class AnaliseSintatica {
     public void ATRIB (){
         token = mt.geraToken();
         if (token.getStr().toString().equals("id")){
-            EXPATRIB();
+            EXP_ATRIB();
            
             
         }
         return;
     }
     
-    public void EXPATRIB(){
+    public void EXP_ATRIB(){
         token = mt.geraToken();
         MUL();        
     }    
@@ -132,7 +132,8 @@ public class AnaliseSintatica {
     public void MUL2(){
         token = mt.geraToken();
         if(token.getStr().toString().equals("*")){
-           MUL(); 
+           token = mt.geraToken();
+            MUL(); 
         } 
         else
             return;
@@ -189,6 +190,115 @@ public class AnaliseSintatica {
                return;
            }
        }       
+    }
+    
+    public void EXP_BOOL(){
+       token = mt.geraToken();
+       AND();
+    } 
+    
+    public void AND(){
+       token = mt.geraToken();
+       OR();
+       AND2();
+    }
+    
+    public void OR(){
+        token = mt.geraToken();
+        OPERANDO_BOOL();
+        OR2();
+    }
+    
+    public void AND2(){
+        token = mt.geraToken();
+        if(token.getStr().toString().equals("and")){
+          AND();
+        }else{
+            return;
+        }        
+    }
+    
+    public void OR2(){
+        token = mt.geraToken();
+        if(token.getStr().toString().equals("or")){
+          OR();
+        }else{
+            return;
+        }        
+    }
+    
+    public void OPERANDO_BOOL(){
+         token = mt.geraToken();
+         if ((token.getTipo() == TiposToken.ID) || (token.getStr().toString().equals("id")) || (token.getStr().toString().equals("cte"))){
+           EXP_REL();  
+         }else if(token.getStr().toString().equals("not")){
+             OPERANDO_BOOL();            
+         } else if(token.getStr().toString().equals("(")){
+            AND();
+            if (token.getStr().toString().equals(")")){
+               return;              
+           } 
+         }   
+    }
+    
+    public void EXP_REL(){
+      token = mt.geraToken();
+      EXP_ATRIB();
+      OP_REL();
+      EXP_ATRIB();
+    }
+    
+    public void OP_REL(){
+      token = mt.geraToken();
+      if((token.getStr().toString().equals("=")) ) {
+          return;
+      }else if (token.getStr().toString().equals("<")){
+        token = mt.geraToken();
+          if (token.getStr().toString().equals(">")){
+              return;
+          }
+      }else if (token.getStr().toString().equals("<")){
+          return;
+      } else if (token.getStr().toString().equals(">")){
+          return;
+      }else if (token.getStr().toString().equals(">")){
+          token = mt.geraToken();
+          if (token.getStr().toString().equals("=")){
+              return;
+          }     
+      }else if (token.getStr().toString().equals("<")){
+          token = mt.geraToken();
+          if (token.getStr().toString().equals("=")){
+              return;
+          }     
+      }    
+    }
+    
+    public void IF(){
+        token = mt.geraToken();
+        if (token.getStr().toString().equals("if")){
+           EXP_BOOL();
+           token = mt.geraToken();
+           if (token.getStr().toString().equals("then")){
+               token = mt.geraToken();
+               CORPO2();
+               IF2();
+            }           
+        }
+    }
+    
+    public void IF2(){
+        token = mt.geraToken();
+        if (token.getStr().toString().equals("else")){
+            CORPO2();
+            
+        }else {
+            return;
+        }     
+    }
+    
+    public void CORPO2(){
+       token = mt.geraToken(); 
     }
     
     public void ERRO(String esperado, String obtido) {
