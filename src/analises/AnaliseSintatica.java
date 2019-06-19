@@ -517,7 +517,6 @@ public class AnaliseSintatica {
     public void MUL2(){
         token = mt.geraToken();
         if(token.getStr().toString().equals("*")){
-           token = mt.geraToken();
            MUL(); 
         } 
         else
@@ -617,11 +616,6 @@ public class AnaliseSintatica {
            EXP_REL();  
          }else if(token.getStr().toString().equals("not")){
              OPERANDO_BOOL();            
-         } else if(token.getStr().toString().equals("(")){
-            AND();
-            if (token.getStr().toString().equals(")")){
-               return;              
-           } 
          }   
     }
     
