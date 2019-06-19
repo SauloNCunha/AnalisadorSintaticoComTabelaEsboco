@@ -2,25 +2,29 @@ package analises;
 
 import javax.swing.JOptionPane;
 
+
 public class AnaliseSintatica {
     private Token token;
     private AnaliseLexica mt;
-    
+      
     public AnaliseSintatica(String codigo) {
+        
         this.token = new Token();
         this.mt = new AnaliseLexica(codigo);
-        PROGRAM();
+        PROGRAM();      
+        
     }
     
-    public void PROGRAM() {
-        token = mt.geraToken();
+    public void PROGRAM() {        
+        token = mt.geraToken();       
         if (token.getStr().toString().equals("program")){
             token = mt.geraToken();
-            if(token.getTipo()== TiposToken.ID){
+            if(token.getTipo()== TiposToken.ID){                
                 mt.getTabelaIdenticadores().adiciona(token.getStr().toString());//Adiciona o Token
-                token = mt.geraToken();
-                if (token.getStr().toString().equals(";")){
+                token = mt.geraToken();                
+                if (token.getStr().toString().equals(";")){                    
                     LIB();
+                    CONST();
                     VAR();
                     token = mt.geraToken();
                     
@@ -59,7 +63,7 @@ public class AnaliseSintatica {
         
         if (token.getStr().toString().equals("uses")){
             LISTA_ID();
-            token = mt.geraToken();
+            //token = mt.geraToken();
             if (token.getStr().toString().equals(";")){
                 return;
             }
@@ -514,7 +518,7 @@ public class AnaliseSintatica {
         token = mt.geraToken();
         if(token.getStr().toString().equals("*")){
            token = mt.geraToken();
-            MUL(); 
+           MUL(); 
         } 
         else
             return;
@@ -632,25 +636,16 @@ public class AnaliseSintatica {
         token = mt.geraToken();
         if((token.getStr().toString().equals("=")) ) {
             return;
-        }else if (token.getStr().toString().equals("<")){
-            token = mt.geraToken();
-            if (token.getStr().toString().equals(">")){
-                return;
-            }
+        }else if (token.getStr().toString().equals("<>")){
+            return;
         }else if (token.getStr().toString().equals(">")){
             return;
         }else if (token.getStr().toString().equals("<")){
             return;
-        }else if (token.getStr().toString().equals(">")){
-            token = mt.geraToken();
-            if (token.getStr().toString().equals("=")){
-                return;
-            }     
-        }else if (token.getStr().toString().equals("<")){
-            token = mt.geraToken();
-            if (token.getStr().toString().equals("=")){
-                return;
-            }     
+        }else if (token.getStr().toString().equals(">=")){
+            return;               
+        }else if (token.getStr().toString().equals("<=")){
+            return;               
         }    
     }
     
@@ -788,6 +783,8 @@ public class AnaliseSintatica {
     
     public void ERRO(String esperado, String obtido) {
         JOptionPane.showMessageDialog(null, "Ocorreu um erro na análise! Era esperado " + esperado + " e foi obtido " + obtido);
+        
+       
         return;
     }
     
