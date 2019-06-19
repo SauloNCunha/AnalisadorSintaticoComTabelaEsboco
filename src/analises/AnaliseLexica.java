@@ -1,5 +1,10 @@
 package analises;
 
+import analises.TabelaIdenticadores;
+import analises.TabelaReservadas;
+import analises.TiposToken;
+import analises.Token;
+
 public class AnaliseLexica {
     private String s;
     private Token token;
@@ -98,53 +103,67 @@ public class AnaliseLexica {
             
             return token;
         }
-        else if (c == ':') { //verifica :
+        else if (c == ':') { //verifica :=
             token.add(c);
             c = cabecote();
             i++;
-            if (c == '=') { //verifica =
+            if (c == '='){
                 token.add(c);
                 c = cabecote();
                 i++;
             }
-            
             token.setTipo(TiposToken.PONTUACAO);
             
             return token;
         }
-        else if (c == '>') { //verifica >
+        else if (c == '>') { //verifica >=
             token.add(c);
             c = cabecote();
             i++;
-            if (c == '=') { //verifica =
+            if (c == '='){
                 token.add(c);
                 c = cabecote();
                 i++;
             }
-            
             token.setTipo(TiposToken.PONTUACAO);
             
             return token;
         }
-        else if (c == '<') { //verifica <
+        else if (c == '<') { //verifica <=
             token.add(c);
             c = cabecote();
             i++;
-            if (c == '=') { //verifica =
+            if (c == '='){
                 token.add(c);
                 c = cabecote();
                 i++;
-            } else if (c == '>') { //verifica >
-                token.add(c);
-                c = cabecote();
-                i++;
-            }          
+            }
+            token.setTipo(TiposToken.PONTUACAO);
             
+            return token;
+        }
+        else if (c == '<') { //verifica <>
+            token.add(c);
+            c = cabecote();
+            i++;
+            if (c == '>'){
+                token.add(c);
+                c = cabecote();
+                i++;
+            }
             token.setTipo(TiposToken.PONTUACAO);
             
             return token;
         }
         else if (c == ';') { //verifica ;
+            token.add(c);
+            c = cabecote();
+            i++;
+            token.setTipo(TiposToken.PONTUACAO);
+            
+            return token;
+        }
+        else if (c == '.') { //verifica .
             token.add(c);
             c = cabecote();
             i++;
@@ -159,6 +178,54 @@ public class AnaliseLexica {
             token.setTipo(TiposToken.PONTUACAO);
             
             return token;
+        }
+        else if (c == '=') { //verifica =
+            token.add(c);
+            c = cabecote();
+            i++;
+            token.setTipo(TiposToken.PONTUACAO);
+            
+            return token;
+        }
+        else if (c == '[') { //verifica [
+            token.add(c);
+            c = cabecote();
+            i++;
+            token.setTipo(TiposToken.PONTUACAO);
+            
+            return token;
+        }
+        else if (c == ']') { //verifica ]
+            token.add(c);
+            c = cabecote();
+            i++;
+            token.setTipo(TiposToken.PONTUACAO);
+            
+            return token;
+        }
+        else if (c == '^') { //verifica ^
+            token.add(c);
+            c = cabecote();
+            i++;
+            token.setTipo(TiposToken.PONTUACAO);
+            
+            return token;
+        }
+        else if (c == '(') { //verifica (
+            token.add(c);
+            c = cabecote();
+            i++;
+            token.setTipo(TiposToken.PONTUACAO);
+            
+            return token;
+        }
+        else if (c == ')') { //verifica )
+            token.add(c);
+            c = cabecote();
+            i++;
+            token.setTipo(TiposToken.PONTUACAO);
+            
+            return token;
         }else if (c == '*') { //verifica *
             token.add(c);
             c = cabecote();
@@ -166,7 +233,8 @@ public class AnaliseLexica {
             token.setTipo(TiposToken.PONTUACAO);
             
             return token;
-        }else if (c == '/') { //verifica /
+        }
+        else if (c == '-') { //verifica -
             token.add(c);
             c = cabecote();
             i++;
@@ -181,21 +249,8 @@ public class AnaliseLexica {
             token.setTipo(TiposToken.PONTUACAO);
             
             return token;
-        } else if (c == '-') { //verifica -
-            token.add(c);
-            c = cabecote();
-            i++;
-            token.setTipo(TiposToken.PONTUACAO);
-            
-            return token;
-        } else if (c == '(') { //verifica (
-            token.add(c);
-            c = cabecote();
-            i++;
-            token.setTipo(TiposToken.PONTUACAO);
-            
-            return token;
-        }else if (c == ')') { //verifica )
+        }
+        else if (c == '>') { //verifica >
             token.add(c);
             c = cabecote();
             i++;
@@ -203,15 +258,7 @@ public class AnaliseLexica {
             
             return token;
         }
-        
-        else if (c == '[') {
-            token.add(c);
-            c = cabecote();
-            i++;
-            token.setTipo(TiposToken.PONTUACAO);
-            
-            return token;
-        }else if (c == ']') { 
+        else if (c == '<') { //verifica <
             token.add(c);
             c = cabecote();
             i++;
@@ -219,15 +266,6 @@ public class AnaliseLexica {
             
             return token;
         }
-        else if (c == '^') { 
-            token.add(c);
-            c = cabecote();
-            i++;
-            token.setTipo(TiposToken.PONTUACAO);
-            
-            return token;
-        }
-        
         else {
             token.add(c);
             System.out.println("C: " + c);
