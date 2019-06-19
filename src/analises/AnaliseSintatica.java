@@ -106,6 +106,7 @@ public class AnaliseSintatica {
         if(token.getTipo()== TiposToken.ID){
             token = mt.geraToken();
             if (token.getStr().toString().equals("=")){
+                token = mt.geraToken();
                 EXP_ATRIB();
                 token = mt.geraToken();
                 if (token.getStr().toString().equals(";")){
@@ -122,8 +123,9 @@ public class AnaliseSintatica {
     }
     
     public void VAR() {
-        token = mt.geraToken();
+        //token = mt.geraToken();
         if (token.getStr().toString().equals("var")){
+            
             DEC_VAR();
         }
         else return;
@@ -133,7 +135,7 @@ public class AnaliseSintatica {
         token = mt.geraToken();
         if(token.getTipo()== TiposToken.ID){
             LISTA_ID();
-            token = mt.geraToken();
+            //token = mt.geraToken();
             if(token.getStr().toString().equals(":")){
                 DEC_VAR2();
             }
@@ -156,7 +158,7 @@ public class AnaliseSintatica {
     }
     
     public void DEC_VAR2(){
-        token = mt.geraToken();
+        //token = mt.geraToken();
         if(token.getStr().toString().equals("integer") || token.getStr().toString().equals("real") || 
             token.getStr().toString().equals("boolean") || token.getStr().toString().equals("char")|| 
             token.getStr().toString().equals("string")){
@@ -515,9 +517,8 @@ public class AnaliseSintatica {
     }
     
     public void MUL2(){
-        token = mt.geraToken();
+        //token = mt.geraToken();
         if(token.getStr().toString().equals("*")){
-           token = mt.geraToken();
            MUL(); 
         } 
         else
@@ -530,7 +531,7 @@ public class AnaliseSintatica {
     }
     
     public void DIV2(){
-        token = mt.geraToken();
+        //token = mt.geraToken();
         if(token.getStr().toString().equals("/")){
            DIV(); 
         } 
@@ -544,7 +545,7 @@ public class AnaliseSintatica {
     }
     
     public void SOM2(){
-       token = mt.geraToken();
+       //token = mt.geraToken();
        if(token.getStr().toString().equals("+")){
           SOM(); 
        } 
@@ -553,7 +554,7 @@ public class AnaliseSintatica {
     }
     
     public void SUB2(){
-       token = mt.geraToken(); 
+       //token = mt.geraToken(); 
        if(token.getStr().toString().equals("-")){
           SUB(); 
        } 
@@ -562,7 +563,7 @@ public class AnaliseSintatica {
     }
     
     public void OPERANDO_ATRIB(){
-       token = mt.geraToken();
+       //token = mt.geraToken();
        if(token.getTipo() == TiposToken.ID){
           return;
        }else if(token.getTipo() == TiposToken.CTE){
@@ -617,11 +618,6 @@ public class AnaliseSintatica {
            EXP_REL();  
          }else if(token.getStr().toString().equals("not")){
              OPERANDO_BOOL();            
-         } else if(token.getStr().toString().equals("(")){
-            AND();
-            if (token.getStr().toString().equals(")")){
-               return;              
-           } 
          }   
     }
     
