@@ -31,10 +31,15 @@ public class TabelaReservadas {
         tabela.put(13, "until");
         tabela.put(14, "const");
         tabela.put(15, "var");
-        tabela.put(17, "use");
-        tabela.put(18, "key");
-        tabela.put(19, "readkey");   
-        
+        tabela.put(16, "read");   
+        tabela.put(17, "readln");
+        tabela.put(18, "write");
+        tabela.put(19, "writeln");
+        tabela.put(20, "array");
+        tabela.put(21, "of");
+        tabela.put(22, "not");
+        tabela.put(23, "or");
+        tabela.put(24, "and");
     }
     
     public Boolean estaContido(String valor) {

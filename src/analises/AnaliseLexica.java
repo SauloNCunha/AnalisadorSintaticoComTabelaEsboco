@@ -204,6 +204,30 @@ public class AnaliseLexica {
             return token;
         }
         
+        else if (c == '[') {
+            token.add(c);
+            c = cabecote();
+            i++;
+            token.setTipo(TiposToken.PONTUACAO);
+            
+            return token;
+        }else if (c == ']') { 
+            token.add(c);
+            c = cabecote();
+            i++;
+            token.setTipo(TiposToken.PONTUACAO);
+            
+            return token;
+        }
+        else if (c == '^') { 
+            token.add(c);
+            c = cabecote();
+            i++;
+            token.setTipo(TiposToken.PONTUACAO);
+            
+            return token;
+        }
+        
         else {
             token.add(c);
             System.out.println("C: " + c);
