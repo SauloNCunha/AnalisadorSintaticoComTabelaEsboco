@@ -132,33 +132,24 @@ public class AnaliseSintatica {
     }
     
     public void DEC_VAR(){
-        token = mt.geraToken();
-        if(token.getTipo()== TiposToken.ID){
-            LISTA_ID();
-            //token = mt.geraToken();
-            if(token.getStr().toString().equals(":")){
+        //token = mt.geraToken();
+        LISTA_ID();
+        
+        if(token.getStr().toString().equals(":")){
                 DEC_VAR2();
-            }
-            else ERRO(":", token.getStr().toString());
+        }else {
+            ERRO(":", token.getStr().toString());
         }
-        else
-            if(token.getStr().toString().equals("^")){
-                token = mt.geraToken();
-                if(token.getTipo()== TiposToken.ID){
-                    LISTA_PONT();
-                    token = mt.geraToken();
-                    if(token.getStr().toString().equals(":")){
-                        DEC_VAR2();
-                    }
-                    else ERRO(":", token.getStr().toString());
-                }
-                else ERRO("identificador", token.getStr().toString());
-            }
-            else ERRO("^", token.getStr().toString());
+        token = mt.geraToken();
+        LISTA_PONT();
+        token = mt.geraToken();
+        if(token.getStr().toString().equals(":")){
+            DEC_VAR2();
+        }
     }
     
     public void DEC_VAR2(){
-        //token = mt.geraToken();
+        token = mt.geraToken();
         if(token.getStr().toString().equals("integer") || token.getStr().toString().equals("real") || 
             token.getStr().toString().equals("boolean") || token.getStr().toString().equals("char")|| 
             token.getStr().toString().equals("string")){
@@ -178,6 +169,7 @@ public class AnaliseSintatica {
                     if (token.getStr().toString().equals("]")){
                        token = mt.geraToken();
                        if (token.getStr().toString().equals("of")){
+                           token = mt.geraToken();
                            TIPO();
                            token = mt.geraToken();
                            if (token.getStr().toString().equals(";")){
