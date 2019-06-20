@@ -29,8 +29,7 @@ public class AnaliseSintatica {
                     token = mt.geraToken();
                     
                     if (token.getStr().toString().equals("begin")){
-                        token = mt.geraToken();
-                        
+                        LISTA_COM();
                         if (token.getStr().toString().equals("end")){
                            token = mt.geraToken();
                            
@@ -45,7 +44,7 @@ public class AnaliseSintatica {
                             ERRO("end",token.getStr().toString());                        
                     }
                     else 
-                        ERRO("begin",token.getStr().toString());
+                        ERRO("begin pro",token.getStr().toString());
                 }
                 else 
                     ERRO(";",token.getStr().toString());
@@ -166,6 +165,7 @@ public class AnaliseSintatica {
             
                 if(token.getStr().toString().equals("[")){
                     INTERVALO();
+                    token = mt.geraToken();
                     if (token.getStr().toString().equals("]")){
                        token = mt.geraToken();
                        if (token.getStr().toString().equals("of")){
@@ -187,10 +187,8 @@ public class AnaliseSintatica {
     }
     
     public void DEC_VAR3(){
-        if(token.getTipo()== TiposToken.ID){
             DEC_VAR();
-        }
-        else return;
+        return;
     }
     
     public void TIPO(){
