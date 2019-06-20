@@ -29,6 +29,7 @@ public class AnaliseSintatica {
                     token = mt.geraToken();
                     
                     if (token.getStr().toString().equals("begin")){
+                        LISTA_COM();
                         token = mt.geraToken();
                         
                         if (token.getStr().toString().equals("end")){
@@ -45,7 +46,7 @@ public class AnaliseSintatica {
                             ERRO("end",token.getStr().toString());                        
                     }
                     else 
-                        ERRO("begin",token.getStr().toString());
+                        ERRO("begin pro",token.getStr().toString());
                 }
                 else 
                     ERRO(";",token.getStr().toString());
@@ -67,7 +68,7 @@ public class AnaliseSintatica {
             if (token.getStr().toString().equals(";")){
                 return;
             }
-            else ERRO(";", token.getStr().toString());
+            else ERRO("; lib", token.getStr().toString());
         }
         else return;// lambida
             
@@ -112,7 +113,7 @@ public class AnaliseSintatica {
                 if (token.getStr().toString().equals(";")){
                     DEC_CONST2();
                 }
-                else ERRO(";", token.getStr().toString());
+                else ERRO("; const", token.getStr().toString());
             }
         }
     }
@@ -123,16 +124,16 @@ public class AnaliseSintatica {
     }
     
     public void VAR() {
-        //token = mt.geraToken();
+        token = mt.geraToken();
         if (token.getStr().toString().equals("var")){
-            
+            token = mt.geraToken();
             DEC_VAR();
         }
         else return;
     }
     
     public void DEC_VAR(){
-        //token = mt.geraToken();
+        token = mt.geraToken();
         LISTA_ID();
         
         if(token.getStr().toString().equals(":")){
@@ -158,7 +159,7 @@ public class AnaliseSintatica {
             if(token.getStr().toString().equals(";")){
                 DEC_VAR3();
             }
-            else ERRO(";", token.getStr().toString());
+            else ERRO("; var", token.getStr().toString());
         }
         else
             if(token.getStr().toString().equals("array")){
@@ -175,7 +176,7 @@ public class AnaliseSintatica {
                            if (token.getStr().toString().equals(";")){
                                return;
                            }
-                           else ERRO(";", token.getStr().toString());
+                           else ERRO("; var", token.getStr().toString());
                        }
                        else ERRO("of", token.getStr().toString());
                     }
