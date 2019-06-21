@@ -30,7 +30,10 @@ public class AnaliseSintatica {
                     
                     if (token.getStr().toString().equals("begin")){
                         LISTA_COM();
+<<<<<<< HEAD
                         
+=======
+>>>>>>> 88f18f483027c9d348d5261439fcc73cb3b47c03
                         if (token.getStr().toString().equals("end")){
                            token = mt.geraToken();
                            
@@ -45,7 +48,7 @@ public class AnaliseSintatica {
                             ERRO("end",token.getStr().toString());                        
                     }
                     else 
-                        ERRO("begin",token.getStr().toString());
+                        ERRO("begin pro",token.getStr().toString());
                 }
                 else 
                     ERRO(";",token.getStr().toString());
@@ -174,6 +177,7 @@ public class AnaliseSintatica {
             
                 if(token.getStr().toString().equals("[")){
                     INTERVALO();
+                    token = mt.geraToken();
                     if (token.getStr().toString().equals("]")){
                        token = mt.geraToken();
                        if (token.getStr().toString().equals("of")){
@@ -195,6 +199,7 @@ public class AnaliseSintatica {
             else ERRO("array", token.getStr().toString());
     }
     
+<<<<<<< HEAD
     public void DEC_VAR3(){  
         if(token.getTipo()== TiposToken.ID){
             //token = mt.geraToken();
@@ -202,6 +207,11 @@ public class AnaliseSintatica {
             
         }
         else return;
+=======
+    public void DEC_VAR3(){
+            DEC_VAR();
+        return;
+>>>>>>> 88f18f483027c9d348d5261439fcc73cb3b47c03
     }
     
     public void TIPO(){
