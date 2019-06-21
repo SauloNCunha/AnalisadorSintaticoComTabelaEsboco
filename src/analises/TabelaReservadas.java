@@ -39,7 +39,13 @@ public class TabelaReservadas {
         tabela.put(21, "of");
         tabela.put(22, "not");
         tabela.put(23, "or");
-        tabela.put(24, "and");
+        tabela.put(24, "and");        
+        tabela.put(25, "string");
+        tabela.put(26, "integer");
+        tabela.put(27, "real");
+        tabela.put(28, "boolean");
+        tabela.put(29, "char");
+        tabela.put(30, "float");
     }
     
     public Boolean estaContido(String valor) {
