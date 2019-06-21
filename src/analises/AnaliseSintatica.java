@@ -142,7 +142,7 @@ public class AnaliseSintatica {
         }
         token = mt.geraToken();
         LISTA_PONT();
-        token = mt.geraToken();
+        //token = mt.geraToken();
         if(token.getStr().toString().equals(":")){
             DEC_VAR2();
         }
@@ -156,7 +156,9 @@ public class AnaliseSintatica {
             TIPO();
             token = mt.geraToken();
             if(token.getStr().toString().equals(";")){
+                
                 DEC_VAR3();
+                token = mt.geraToken();
             }
             else ERRO(";", token.getStr().toString());
         }
@@ -186,9 +188,10 @@ public class AnaliseSintatica {
             else ERRO("array", token.getStr().toString());
     }
     
-    public void DEC_VAR3(){
+    public void DEC_VAR3(){  
         if(token.getTipo()== TiposToken.ID){
             DEC_VAR();
+            
         }
         else return;
     }
@@ -242,7 +245,7 @@ public class AnaliseSintatica {
         else return;
     }
     
-    public void LISTA_PONT(){
+   public void LISTA_PONT(){
         token = mt.geraToken();
         if (token.getStr().toString().equals("^")){
             token = mt.geraToken();
