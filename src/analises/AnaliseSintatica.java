@@ -29,6 +29,7 @@ public class AnaliseSintatica {
                     //token = mt.geraToken();
                     
                     if (token.getStr().toString().equals("begin")){
+                        token = mt.geraToken();
                         LISTA_COM();
                         
                         if (token.getStr().toString().equals("end")){
@@ -78,6 +79,7 @@ public class AnaliseSintatica {
     public void LISTA_ID() {
         //token = mt.geraToken();
         if(token.getTipo() == TiposToken.ID){
+            token = mt.geraToken();
             LISTA_ID2();
         }
         else 
@@ -85,7 +87,7 @@ public class AnaliseSintatica {
     }
     
     public void LISTA_ID2() {
-        token = mt.geraToken();
+        //token = mt.geraToken();
         
         if (token.getStr().toString().equals(",")){
             token = mt.geraToken();
@@ -111,7 +113,7 @@ public class AnaliseSintatica {
             if (token.getStr().toString().equals("=")){
                 token = mt.geraToken();
                 EXP_ATRIB();
-                token = mt.geraToken();
+                //token = mt.geraToken();
                 if (token.getStr().toString().equals(";")){
                     DEC_CONST2();
                 }
@@ -175,7 +177,7 @@ public class AnaliseSintatica {
             
                 if(token.getStr().toString().equals("[")){
                     INTERVALO();
-                    token = mt.geraToken();
+                    //token = mt.geraToken();
                     if (token.getStr().toString().equals("]")){
                        token = mt.geraToken();
                        if (token.getStr().toString().equals("of")){
@@ -290,14 +292,15 @@ public void DEC_VAR3(){
         }
     }
     
-    public void LISTA_COM(){
+    public void LISTA_COM(){        
         COMANDO();
+        token = mt.geraToken();
         LISTA_COM();
         return;
     }
     
     public void COMANDO(){
-        token = mt.geraToken();///verificar aqui talvez seja necessario adicioanr ele nas chamadas e não aqui 
+        //token = mt.geraToken();///verificar aqui talvez seja necessario adicioanr ele nas chamadas e não aqui 
         if (token.getTipo()== TiposToken.ID){
             ATRIB();
             token = mt.geraToken();
@@ -351,8 +354,9 @@ public void DEC_VAR3(){
     }
     
     public void ESCOPO(){
-        token = mt.geraToken();
+        //token = mt.geraToken();
         if (token.getStr().toString().equals("begin")){
+            token = mt.geraToken();
             LISTA_COM();
             token = mt.geraToken();
             if (token.getStr().toString().equals("end")){
@@ -376,6 +380,7 @@ public void DEC_VAR3(){
         token.getStr().toString().equals("while") ||
         token.getStr().toString().equals("repeat") ||
         token.getStr().toString().equals("if")){
+            token = mt.geraToken();
             COMANDO();
         }
         else
@@ -418,6 +423,7 @@ public void DEC_VAR3(){
     public void ESCOPO2(){
         token = mt.geraToken();
         if (token.getStr().toString().equals("begin")){
+            token = mt.geraToken();
             LISTA_COM();
             token = mt.geraToken();
             if (token.getStr().toString().equals("end")){
@@ -464,13 +470,15 @@ public void DEC_VAR3(){
 
     
     public void FOR() {
-        token = mt.geraToken();
+        //token = mt.geraToken();
         if (token.getStr().toString().equals("for")){
-            ATRIB();
             token = mt.geraToken();
+            ATRIB();
+           // token = mt.geraToken();
             if (token.getStr().toString().equals("to")){
-                EXP_ATRIB();
                 token = mt.geraToken();
+                EXP_ATRIB();
+                
                 if (token.getStr().toString().equals("do")){
                     CORPO();
                 }
@@ -482,8 +490,9 @@ public void DEC_VAR3(){
     }
     
     public void FOR2() {
-        token = mt.geraToken();
+        //token = mt.geraToken();
         if (token.getStr().toString().equals("for")){
+            token = mt.geraToken();
             ATRIB();
             token = mt.geraToken();
             if (token.getStr().toString().equals("to")){
@@ -499,11 +508,12 @@ public void DEC_VAR3(){
         else ERRO("for", token.getStr().toString());
     }
     
-    public void ATRIB (){
-        token = mt.geraToken();
+    public void ATRIB(){
+        //token = mt.geraToken();
         if (token.getTipo()== TiposToken.ID){
             token = mt.geraToken();
             if(token.getStr().toString().equals(":=")){
+                token = mt.geraToken();
                 EXP_ATRIB();
             }
             else ERRO(":=", token.getStr().toString());
@@ -528,7 +538,9 @@ public void DEC_VAR3(){
     public void MUL2(){
         //token = mt.geraToken();
         if(token.getStr().toString().equals("*")){
-           MUL(); 
+            token = mt.geraToken();
+            MUL(); 
+            
         } 
         else
             return;
@@ -542,7 +554,8 @@ public void DEC_VAR3(){
     public void DIV2(){
         //token = mt.geraToken();
         if(token.getStr().toString().equals("/")){
-           DIV(); 
+           token = mt.geraToken();
+            DIV(); 
         } 
         else
             return;
@@ -556,7 +569,8 @@ public void DEC_VAR3(){
     public void SOM2(){
        //token = mt.geraToken();
        if(token.getStr().toString().equals("+")){
-          SOM(); 
+          token = mt.geraToken();
+           SOM(); 
        } 
         else
             return; 
@@ -565,7 +579,9 @@ public void DEC_VAR3(){
     public void SUB2(){
        //token = mt.geraToken(); 
        if(token.getStr().toString().equals("-")){
-          SUB(); 
+          
+           token = mt.geraToken();
+           SUB(); 
        } 
         else
             return; 
@@ -576,10 +592,12 @@ public void DEC_VAR3(){
        if(token.getTipo() == TiposToken.ID){
           return;
        }else if(token.getTipo() == TiposToken.CTE){
-          return;
-       }else if(token.getStr().toString().equals("(")){
-           MUL();
            token = mt.geraToken();
+           return;
+       }else if(token.getStr().toString().equals("(")){
+           token = mt.geraToken();
+           MUL();
+           //token = mt.geraToken();
            if (token.getStr().toString().equals(")")){
                return;
            }
@@ -587,7 +605,7 @@ public void DEC_VAR3(){
     }
     
     public void EXP_BOOL(){
-       token = mt.geraToken();
+      // token = mt.geraToken();
        AND();
     } 
     
@@ -598,7 +616,7 @@ public void DEC_VAR3(){
     }
     
     public void OR(){
-        token = mt.geraToken();
+        //token = mt.geraToken();
         OPERANDO_BOOL();
         OR2();
     }
@@ -655,8 +673,9 @@ public void DEC_VAR3(){
     }
     
     public void IF(){
-        token = mt.geraToken();
+        //oken = mt.geraToken();
         if (token.getStr().toString().equals("if")){
+            
            EXP_BOOL();
            token = mt.geraToken();
            if (token.getStr().toString().equals("then")){
@@ -706,6 +725,7 @@ public void DEC_VAR3(){
     public void REPEAT(){
         token = mt.geraToken();
         if (token.getStr().toString().equals("repeat")){
+            token = mt.geraToken();
            LISTA_COM();
            token = mt.geraToken();
            if (token.getStr().toString().equals("until")){
