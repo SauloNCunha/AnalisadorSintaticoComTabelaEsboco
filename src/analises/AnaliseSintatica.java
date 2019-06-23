@@ -488,6 +488,7 @@ public void DEC_VAR3(){
                 
                 if (token.getStr().toString().equals("do")){
                     CORPO();
+                    token = mt.geraToken();
                 }
                 else ERRO("do", token.getStr().toString());
             }
