@@ -389,7 +389,7 @@ public void DEC_VAR3(){
     }
     
     public void COMANDO2(){
-        token = mt.geraToken();
+        //token = mt.geraToken();
         if (token.getTipo()== TiposToken.ID){
             ATRIB();
         }
@@ -399,6 +399,12 @@ public void DEC_VAR3(){
         }
         else 
             if (token.getStr().toString().equals("write")){
+            SAIDA();
+        }
+        else if (token.getStr().toString().equals("readln")){
+            ENTRADA();
+        }
+        else if (token.getStr().toString().equals("writeln")){
             SAIDA();
         }
         else 
@@ -438,6 +444,8 @@ public void DEC_VAR3(){
         if(token.getTipo()== TiposToken.ID ||
         token.getStr().toString().equals("read") ||
         token.getStr().toString().equals("write") ||
+        token.getStr().toString().equals("readln") ||
+        token.getStr().toString().equals("writeln") ||
         token.getStr().toString().equals("for") ||
         token.getStr().toString().equals("while") ||
         token.getStr().toString().equals("repeat") ||
@@ -621,12 +629,10 @@ public void DEC_VAR3(){
     }
     
     public void AND2(){
-        token = mt.geraToken();
-        if(token.getStr().toString().equals("and")){
-          AND();
-        }else{
-            return;
-        }        
+        //token = mt.geraToken();        
+        if (token.getStr().toString().equals("and")) {
+            AND();
+        } else return;
     }
     
     public void OR2(){
@@ -640,15 +646,15 @@ public void DEC_VAR3(){
     
     public void OPERANDO_BOOL(){
          token = mt.geraToken();
-         if ((token.getTipo() == TiposToken.ID) || (token.getTipo()== TiposToken.CTE)){
+         if ((token.getTipo() == TiposToken.ID) || (token.getTipo()== TiposToken.CTE) || (token.getStr().toString().equals("("))){
            EXP_REL();  
          }else if(token.getStr().toString().equals("not")){
              OPERANDO_BOOL();            
-         }   
+         } else ERRO("identificador, constante, ( ou not", token.getStr().toString());   
     }
     
     public void EXP_REL(){
-      token = mt.geraToken();
+      //token = mt.geraToken();
       EXP_ATRIB();
       OP_REL();
       EXP_ATRIB();
@@ -656,19 +662,29 @@ public void DEC_VAR3(){
     
     public void OP_REL(){
         token = mt.geraToken();
-        if((token.getStr().toString().equals("=")) ) {
+        if(token.getTipo()== TiposToken.PONTUACAO ){
+            token = mt.geraToken();
+            return;
+        }
+        /*if((token.getStr().toString().equals("=")) ) {
+            token = mt.geraToken();
             return;
         }else if (token.getStr().toString().equals("<>")){
+            token = mt.geraToken();
             return;
         }else if (token.getStr().toString().equals(">")){
+            token = mt.geraToken();
             return;
         }else if (token.getStr().toString().equals("<")){
+            token = mt.geraToken();
             return;
         }else if (token.getStr().toString().equals(">=")){
+            token = mt.geraToken();
             return;               
         }else if (token.getStr().toString().equals("<=")){
+            token = mt.geraToken();
             return;               
-        }    
+        }    */
     }
     
     public void IF(){
@@ -752,6 +768,7 @@ public void DEC_VAR3(){
         }
         else
             if(token.getStr().toString().equals("writeln")){
+                token = mt.geraToken();
                 WRITELN();
             }
             else ERRO("writeln", token.getStr().toString());
@@ -762,7 +779,7 @@ public void DEC_VAR3(){
         if(token.getStr().toString().equals("(")){
             TERMO();
             LISTA_TERMO();
-            token = mt.geraToken();
+            //token = mt.geraToken();
             if (token.getStr().toString().equals(")")){
                 return;
             }

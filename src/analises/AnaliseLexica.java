@@ -132,7 +132,7 @@ public class AnaliseLexica {
             
             return token;
         }
-        else if (c == '<') { //verifica <=
+        else if (c == '<') { //verifica <= e  <>
             token.add(c);
             c = cabecote();
             i++;
@@ -141,15 +141,7 @@ public class AnaliseLexica {
                 c = cabecote();
                 i++;
             }
-            token.setTipo(TiposToken.PONTUACAO);
-            
-            return token;
-        }
-        else if (c == '<') { //verifica <>
-            token.add(c);
-            c = cabecote();
-            i++;
-            if (c == '>'){
+            else if (c == '>'){
                 token.add(c);
                 c = cabecote();
                 i++;
