@@ -26,8 +26,7 @@ public class AnaliseSintatica {
                     LIB();
                     CONST();
                     VAR();
-                    //token = mt.geraToken();
-                    
+                                        
                     if (token.getStr().toString().equals("begin")){
                         token = mt.geraToken();
                         LISTA_COM();

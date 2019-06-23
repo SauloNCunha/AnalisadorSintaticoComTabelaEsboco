@@ -5,6 +5,7 @@
         <group>
             <file>file:/C:/Users/saulo/Documents/NetBeansProjects/AnalisadorSintaticoComTabelaEsboco/src/analises/AnaliseSintatica.java</file>
             <file>file:/C:/Users/saulo/Documents/NetBeansProjects/AnalisadorSintaticoComTabelaEsboco/src/analises/TiposToken.java</file>
+            <file>file:/C:/Users/saulo/Documents/NetBeansProjects/AnalisadorSintaticoComTabelaEsboco/src/analises/TabelaReservadas.java</file>
             <file>file:/C:/Users/saulo/Documents/NetBeansProjects/AnalisadorSintaticoComTabelaEsboco/src/analises/AnaliseLexica.java</file>
             <file>file:/C:/Users/saulo/Documents/NetBeansProjects/AnalisadorSintaticoComTabelaEsboco/src/analises/Token.java</file>
         </group>
