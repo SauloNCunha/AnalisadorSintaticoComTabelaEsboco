@@ -1,17 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package analises;
 
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- *
- * @author valter
- */
 public class TabelaIdenticadores {
     private Map<Integer, String> tabela;
     private int key;

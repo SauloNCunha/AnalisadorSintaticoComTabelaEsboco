@@ -62,8 +62,11 @@ public class AnaliseLexica {
                 token.add(c);
                 c = cabecote();
                 i++;
-                
-                if (Character.isDigit(c)) { //verifica se há dígito depois do .
+                if (c == '.') {
+                    token.setTipo(TiposToken.CTE);
+                    return token;
+                } 
+                else if (Character.isDigit(c)) { //verifica se há dígito depois do .
                     token.add(c);
                     c = cabecote();
                     i++;
@@ -72,9 +75,9 @@ public class AnaliseLexica {
                         token.add(c);
                         c = cabecote();
                         i++;
-                    }
-                    
+                    }                    
                 }
+                
                 else {
                     token.setTipo(TiposToken.ERRO); //retorna erro se não conter dígito depois do .
                     return token;
