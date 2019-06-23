@@ -40,6 +40,12 @@ public class TabelaReservadas {
         tabela.put(22, "not");
         tabela.put(23, "or");
         tabela.put(24, "and");
+        tabela.put(25, "integer");
+        tabela.put(26, "real");
+        tabela.put(27, "boolean");
+        tabela.put(28, "char");
+        tabela.put(29, "string");
+        
     }
     
     public Boolean estaContido(String valor) {
